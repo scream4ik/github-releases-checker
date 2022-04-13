@@ -15,7 +15,7 @@ logger.addHandler(consoleHandler)
 
 database = db.getDb("database/db.json")
 env = environ.Env()
-repos = env.list("REPOS")
+github_repos = env.list("GITHUB_REPOS")
 slack_webhook_url = env.str("SLACK_WEBHOOK_URL")
 check_frequency = env.int("CHECK_FREQUENCY")
 
@@ -77,21 +77,21 @@ def init_db() -> None:
     records = database.getAll()
 
     for record in records:
-        if record not in repos:
+        if record not in github_repos:
             database.deleteById(record["id"])
 
-    for repo in repos:
+    for repo in github_repos:
         if not database.getByQuery({"url": repo}):
             database.add({"url": repo, "tag_name": ""})
 
 
 def main() -> None:
-    if len(repos) >= 60:
+    if len(github_repos) >= 60:
         logger.warning("Possible out of rate limits")
 
     while True:
 
-        for repo in repos:
+        for repo in github_repos:
             logger.info(f"Start processing {repo}")
 
             send_notification = True

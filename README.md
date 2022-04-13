@@ -1,4 +1,4 @@
-# Github releases checker
+# Releases checker
 
 ### Motivation
 These days we have a lot of external dependencies. And in good form, we should monitor new releases of external dependencies and update them
@@ -14,7 +14,7 @@ Pay attention to Github rate limits https://docs.github.com/en/developers/apps/b
 
 Also, need to be set next environment variables:
 ```
-REPOS=https://github.com/leachim6/hello-world,https://github.com/octocat/Hello-World
+GITHUB_REPOS=https://github.com/leachim6/hello-world,https://github.com/octocat/Hello-World
 SLACK_WEBHOOK_URL=https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX
 CHECK_FREQUENCY=7200
 ```
@@ -23,4 +23,4 @@ env var `CHECK_FREQUENCY` expect value in seconds
 
 Howto create Slack webhook url https://api.slack.com/messaging/webhooks
 
-Dockerhub image can be found here https://hub.docker.com/r/scream4ik/github-releases-checker
+Dockerhub image can be found here https://hub.docker.com/r/scream4ik/releases-checker
