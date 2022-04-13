@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  checker:
+    build: .
+    command: /bin/sh -c "python main.py"
+    env_file:
+      - .env
